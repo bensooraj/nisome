@@ -10,8 +10,9 @@ router.get('/', function (req, res, next) {
 
 /* POST to respond to sendImageDataUrlToServer call from the browser */
 router.post('/receiveDataUrl', function (req, res, next) {
+  console.log(req.body.base64Image.substring(0, 50));
   res.json({
-    hello: "Hello"
+    hello: req.body.base64Image.substring(0, 50)
   });
 });
 
