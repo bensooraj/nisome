@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.image-upload>input {
+  display: none;
+}
+
+label img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#previewImg {
+  display: inline-block;
+  /* max-height: 100%; */
+  max-width: 100%;
+}
