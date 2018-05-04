@@ -13,6 +13,7 @@ function encodeImageFileAsURL(element) {
     let reader = new FileReader();
     reader.onloadend = function (e) {
         let imgDataURL = e.target.result;
+
         base64Image = imgDataURL.split(',')[1];
         console.log("base64Image:", base64Image.substring(0, 50));
 
@@ -28,20 +29,20 @@ function encodeImageFileAsURL(element) {
 }
 
 function sendImageDataUrlToServer(base64Image) {
-    // Set Headers
-    let myHeaders = new Headers({
-        'Content-Type': 'application/json'
-    });
-    // postRequestBody
-    let postRequestBody = { base64Image };
+    // POST Request Body
+    let postRequestBody = JSON.stringify({ base64Image });
+    // let formData = new FormData();
+    // formData.append('imageWithText', file);
     // myInit
     let myInit = {
         method: 'POST',
-        headers: myHeaders,
+        headers: {
+            'content-type': 'application/json'
+        },
         mode: 'cors',
         cache: 'default',
         credentials: 'include',
-        body: JSON.stringify(postRequestBody)
+        body: postRequestBody
     };
 
     fetch('/receiveDataUrl', myInit)
