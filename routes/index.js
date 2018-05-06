@@ -26,9 +26,8 @@ router.get('/', function (req, res, next) {
 
 /* POST to respond to sendImageDataUrlToServer call from the browser */
 router.post('/receiveDataUrl', function (req, res, next) {
-
-    console.log(JSON.stringify(process.env.GOOGLE_APPLICATION_CREDENTIALS));
-    console.log(req.body.base64Image.substring(0, 50));
+    
+    // Convert the base64 string to buffer
     let imageBuffer = Buffer.from(req.body.base64Image, 'base64');
     // console.log(imageBuffer);
     console.log(Buffer.isBuffer(imageBuffer));
