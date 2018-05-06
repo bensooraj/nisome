@@ -2,7 +2,7 @@
 
 **Nisome** is Swahili means **read me**. That's what it does :)
 
-You can see the trial run here: [YouTube Link] (https://www.youtube.com/watch?v=ORYAURs1dXc&list=PL5fteLEpMZij0I_ObJ8bc8SwzxeBoEfBl&t=0s&index=1)
+You can see the trial run here: [YouTube Link](https://www.youtube.com/watch?v=ORYAURs1dXc&list=PL5fteLEpMZij0I_ObJ8bc8SwzxeBoEfBl&t=0s&index=1)
 
 Steps to run the app locally:
 
