@@ -7,33 +7,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/css/style.css">
   <title>
-    <%= title %>
+    Nisome
   </title>
 </head>
 
 <body>
   <h1>
-    <%= title %>
+    Nisome
   </h1>
-  <p>Welcome to
-    <%= title %>
-  </p>
   <div class="image-upload">
     <label for="file-input">
-      <img src="/images/cameraIcon.png" width="100px" height="100px" />
+      <img id="file-input-label" src="/images/cameraIcon.png" width="100px" height="100px" />
     </label>
 
     <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)" />
 
     <img id="previewImg" src="#" style="visibility:hidden;">
-    <!-- <div class="playArea">
-      
-      <div id="displayText">
 
-      </div>
+    <div id="displayText">
+    </div>
+
+    <div class="playArea">
       <audio id="myAudioElement" controls="controls" />
     </div>
-    <img id="playButton" width="50px" height="50px" src="/images/playIcon.png" alt="play"> -->
+
+    <img style="display: none;" id="playButton" width="50px" height="50px" src="/images/playIcon.png" alt="play">
 
   </div>
 

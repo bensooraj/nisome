@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     console.log("<== DOM Content Loaded ==>");
 
@@ -12,8 +11,10 @@ function encodeImageFileAsURL(element) {
     let file = element.files[0];
     let reader = new FileReader();
     reader.onloadend = function (e) {
-        let imgDataURL = e.target.result;
+        // Hide the image upload camera icon
+        document.getElementById('file-input-label').style.display = "none";
 
+        let imgDataURL = e.target.result;
         base64Image = imgDataURL.split(',')[1];
         console.log("base64Image:", base64Image.substring(0, 50));
 
@@ -31,8 +32,7 @@ function encodeImageFileAsURL(element) {
 function sendImageDataUrlToServer(base64Image) {
     // POST Request Body
     let postRequestBody = JSON.stringify({ base64Image });
-    // let formData = new FormData();
-    // formData.append('imageWithText', file);
+
     // myInit
     let myInit = {
         method: 'POST',
@@ -50,10 +50,40 @@ function sendImageDataUrlToServer(base64Image) {
         .then(json)
         .then((data) => {
             console.log(data);
+            // Display extracted text
+            console.log("<== Text and audio data received ==>");
+            console.log("<== Displaying Text ==>");
+            document.getElementById("displayText").innerHTML = `<h4>${data.fullText}</h4>`;
+            processAndAppendToAudioElement(data.audio);
         })
         .catch(error => console.error('Error:', error));
 }
 
+// Convert the audio data received into a block
+function processAndAppendToAudioElement(audioData) {
+    // Process the data
+    console.log("<== Converting audio data to ArrayBuffer to Blob  ==>");
+    let audioArrayBuffer = new Uint8Array(audioData.data);
+    let audioBlob = new Blob([audioArrayBuffer]);
+
+    console.log("<== Creating an object URL from the audio blob  ==>");    
+    let audioObjURL = URL.createObjectURL(audioBlob);
+
+    // Grab the audio elements from the DOM
+    let myAudioElement = document.getElementById('myAudioElement') || new Audio();
+    let playButton = document.getElementById('playButton');
+
+    // 
+    console.log("<== Audio object URL attached to the audio element's source  ==>");
+    myAudioElement.src = audioObjURL;
+    // 
+    console.log("<== Allison speaks!!! Yay!!! ==>");
+    myAudioElement.play();
+    playButton.style.display = "block";
+    playButton.addEventListener("click", function (event) {
+        myAudioElement.play();
+    });
+}
 
 // UTILITY FUNCTIONS
 function status(response) {
